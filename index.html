@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Магазин</title>
+
+</head>
+
+<body>
+
+    <!-- Боковая навигация -->
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#" class="hover-text">Новинки</a>
+        <a href="#" class="hover-text">Авто</a>
+        <a href="#" class="hover-text">спорт</a>
+        <a href="#" class="hover-text">Гаджеты</a>
+        <a href="#" class="hover-text">телефоны </a>
+        <a href="#" class="hover-text">техника </a>
+        <a href="#" class="hover-text">игры</a>
+        <a href="#" class="hover-text">другое..</a>
+    </div>
+
+    <!-- Верхняя навигация -->
+    <div class="navbar">
+        <button class="menu-button" onclick="openNav()">
+            <img src="\img\logo2.jpg" alt="Realme Logo" class="logo-img">
+        </button>
+        <div>
+            <a class="hover-texton" onclick="openMainPage()">Магазин</a>
+            <a class="hover-text" href="cotolog.html">Главная</a>
+            <a class="hover-text" href="./page/contacts.html">Контакты</a>
+        </div>
+        <button class="cart-button" onclick="openCartPage()">
+            <i class="fa fa-shopping-cart"></i>
+            КОРЗИНА ТОВАРОВ 🛒 (<span id="cart-count">0</span>)
+        </button>
+    </div>
+
+    <!-- Блок товаров -->
+    <div class="products" id="product-list">
+        
+        <div class="product">
+            <a href="./page/tovar1.html">
+                <img src="\img\a1.jpg" alt="Товар 1"></a>
+            <h3>Автомобильный Держатель для телефона с беспроводной зарядкой MagSafe </h3>
+            <div class="details">
+                <span class="price">1800 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('../img/a1.jpg', 'Автомобильный Держатель для телефона с беспроводной зарядкой MagSafe ', '1800 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar2.html">
+                <img src="\img\a2.jpg" alt="Товар 2"></a>
+            <h3>Инвертор автомобильный (преобразователь) с 12В на 220В Power</h3>
+            <div class="details">
+                <span class="price">3000 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('../img/a2.jpg', 'Инвертор автомобильный (преобразователь) с 12В на 220В Power', '3000 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar3.html">
+                <img src="\img\a3.jpg" alt="Товар 3"></a>
+            <h3>Автомобильная зарядка с кабелями Type-c и Lightning 120W</h3>
+            <div class="details">
+                <span class="price">300 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('../img/a3.jpg', 'Автомобильная зарядка с кабелями Type-c и Lightning 120W', '300 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar4.html">
+                <img src="\img\a4.jpg" alt="Товар 3"></a>
+            <h3>Компрессорный автомобильный холодильник Alpicool </h3>
+            <div class="details">
+                <span class="price">16000 сом</span>
+                <button class="cart-btn" onclick="addToCart('../img/a4.jpg', 'Компрессорный автомобильный холодильник Alpicool', '16000 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar5.html">
+                <img src="\img\a5.jpg" alt="Товар 3"></a>
+            <h3>Компрессор для накачки колес 2в1 + Jump Starter</h3>
+            <div class="details">
+                <span class="price">1800 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('../img/a5.jpg', 'Компрессор для накачки колес 2в1 + Jump Starter', '1800 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar6.html">
+                <img src="\img\a6.jpg" alt="Товар 3"></a>
+            <h3>Накидка на сиденье авто с подогревом </h3>
+            <div class="details">
+                <span class="price">550 сом</span>
+                <button class="cart-btn" onclick="addToCart('../img/a6.jpg', 'Накидка на сиденье авто с подогревом ', '550 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar7.html">
+                <img src="\img\a7.jpg" alt="Товар 3"></a>
+            <h3>Ароматизатор для автомобиля ультразвуковой Car </h3>
+            <div class="details">
+                <span class="price">3600 сом</span>
+                <button class="cart-btn" onclick="addToCart('../img/a7.jpg', 'Ароматизатор для автомобиля ультразвуковой Car', '3600 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar1.html">
+                <img src="\img\1.jpg" alt="Товар 1"></a>
+            <h3>Беспроводные наушники в стиле CyberPunk QYS V12 </h3>
+            <div class="details">
+                <span class="price">1800 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('../img/1.jpg', 'Беспроводные наушники в стиле CyberPunk QYS V12 ', '1800 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar2.html">
+                <img src="\img\2.jpg" alt="Товар 2"></a>
+            <h3>Беспроводные наушники Realme Buds T110</h3>
+            <div class="details">
+                <span class="price">1900 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('../img/2.jpg', 'Беспроводные наушники Realme Buds T110', '1900 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar3.html">
+                <img src="\img\3.jpg" alt="Товар 3"></a>
+            <h3>Беспроводные наушники Realme Buds Air 6</h3>
+            <div class="details">
+                <span class="price">3800 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('../img/3.jpg', 'Беспроводные наушники Realme Buds Air 6', '3800 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar4.html">
+                <img src="\img\4.jpg" alt="Товар 3"></a>
+            <h3>Беспроводные наушники Realme Buds </h3>
+            <div class="details">
+                <span class="price">1600 сом</span>
+                <button class="cart-btn" onclick="addToCart('../img/4.jpg', 'Беспроводные наушники Realme Buds', '1600 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar5.html">
+                <img src="\img\5.jpg" alt="Товар 3"></a>
+            <h3>Наушники Redmi Buds 6 Vitality Edition</h3>
+            <div class="details">
+                <span class="price">1800 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('../img/5.jpg', 'Наушники Redmi Buds 6 Vitality Edition', '1800 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar6.html">
+                <img src="\img\6.jpg" alt="Товар 3"></a>
+            <h3>Наушники Bluetooth SODO SD-705</h3>
+            <div class="details">
+                <span class="price">550 сом</span>
+                <button class="cart-btn" onclick="addToCart('../img/6.jpg', 'Наушники Bluetooth SODO SD-705', '550 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar7.html">
+                <img src="\img\7.jpg" alt="Товар 3"></a>
+            <h3>Беспроводные наушники Oneplus </h3>
+            <div class="details">
+                <span class="price">3600 сом</span>
+                <button class="cart-btn" onclick="addToCart('../img/7.jpg', 'Беспроводные наушники Oneplus', '3600 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar8.html">
+                <img src="\img\8.jpg" alt="Товар 3"></a>
+            <h3>Наушники Xiaomi Redmi Buds 6 Lite</h3>
+            <div class="details">
+                <span class="price">3200 сом</span>
+                <button class="cart-btn" onclick="addToCart('../img/8.jpg', 'Наушники Xiaomi Redmi Buds 6 Lite', '3200 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar1.html">
+                <img src="\img\s1.jpg" alt="Товар 1"></a>
+            <h3>Сумка на плечо для активных людей Haoshuai </h3>
+            <div class="details">
+                <span class="price">800 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('../img/s1.jpg', 'Сумка на плечо для активных людей Haoshuai ', '800 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar2.html">
+                <img src="\img\s2.jpg" height="1200px" alt="Товар 2"></a>
+            <h3>Аксессуары для Спорт Камер GoPro и SJCAM</h3>
+            <div class="details">
+                <span class="price">1900 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('../img/s2.jpg', 'Аксессуары для Спорт Камер GoPro и SJCAM', '1900 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar3.html">
+                <img src="\img\s3.jpg" alt="Товар 3"></a>
+            <h3>Детская электронная боксерская груша нового поколения Onepunch</h3>
+            <div class="details">
+                <span class="price">3800 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('../img/s3.jpg', 'Детская электронная боксерская груша нового поколения Onepunch', '3800 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar4.html">
+                <img src="\img\s4.jpg" alt="Товар 3"></a>
+            <h3>Локатор трекер AirTag для Iphone Mili Mitag Bell для велосипеда </h3>
+            <div class="details">
+                <span class="price">1600 сом</span>
+                <button class="cart-btn" onclick="addToCart('../img/s4.jpg', 'Локатор трекер AirTag для Iphone Mili Mitag Bell для велосипеда', '1600 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar5.html">
+                <img src="\img\s5.jpg" alt="Товар 3"></a>
+            <h3>Набор бутылок, 3шт Beauty</h3>
+            <div class="details">
+                <span class="price">800 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('../img/s5.jpg', 'Набор бутылок, 3шт Beauty', '800 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar5.html">
+                <img src="\img\s6.jpg" alt="Товар 3"></a>
+            <h3>Бутылка для воды силиконовая, 450 мл</h3>
+            <div class="details">
+                <span class="price">800 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('../img/s6.jpg', 'Бутылка для воды силиконовая, 450 мл', '800 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar5.html">
+                <img src="\img\s7.jpg" alt="Товар 3"></a>
+            <h3>Эспандер 2 в1 для пресса и грудных мышц резиновый</h3>
+            <div class="details">
+                <span class="price">1800 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('../img/s7.jpg', 'Эспандер 2 в1 для пресса и грудных мышц резиновый', '1800 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar5.html">
+                <img src="\img\s8.jpg" alt="Товар 3"></a>
+            <h3>Защитные очки-сетка для страйкбола</h3>
+            <div class="details">
+                <span class="price">1000 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('../img/s8.jpg', 'Защитные очки-сетка для страйкбола', '1000 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar1.html">
+                <img src="https://www.gadget.kg/upload/catalog/74/item_7346/de3146d8ecf9966a262f1d4f7c082f6c.jpg"
+                    alt="Товар 1"></a>
+            <h3>Планшет в стиле CyberPunk QYS V12 </h3>
+            <div class="details">
+                <span class="price">18000 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('https://www.gadget.kg/upload/catalog/74/item_7346/de3146d8ecf9966a262f1d4f7c082f6c.jpg', 'Планшет в стиле CyberPunk QYS V12 ', '18000 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar2.html">
+                <img src="https://www.gadget.kg/upload/catalog/63/item_6285/7794428f9267f2a62fcfeaf036a8de22.jpg"
+                    alt="Товар 2"></a>
+            <h3>Планшет Realme Buds T110</h3>
+            <div class="details">
+                <span class="price">32000 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('https://www.gadget.kg/upload/catalog/63/item_6285/7794428f9267f2a62fcfeaf036a8de22.jpg', 'Планшет Realme Buds T110', '32000 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar3.html">
+                <img src="https://www.gadget.kg/upload/catalog/47/item_4672/d5912b3ae267f3012a7e65a6ce5d2896.jpg"
+                    alt="Товар 3"></a>
+            <h3> Poco x5</h3>
+            <div class="details">
+                <span class="price">26000 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('https://www.gadget.kg/upload/catalog/47/item_4672/d5912b3ae267f3012a7e65a6ce5d2896.jpg', 'Poco x5', '26000 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar4.html">
+                <img src="https://www.gadget.kg/upload/catalog/40/item_3954/40e98149279eb9b650a04c9b9be3d755.jpg"
+                    alt="Товар 3"></a>
+            <h3>Poco x 6 </h3>
+            <div class="details">
+                <span class="price">32000 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('https://www.gadget.kg/upload/catalog/40/item_3954/40e98149279eb9b650a04c9b9be3d755.jpg', 'Poco x 6', '32000 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar5.html">
+                <img src="https://www.gadget.kg/upload/catalog/39/item_3892/0e88d6702744a7de7bc832c9c1adfe7f.jpg"
+                    alt="Товар 3"></a>
+            <h3>Realme note 6 Vitality Edition</h3>
+            <div class="details">
+                <span class="price">18000 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('https://www.gadget.kg/upload/catalog/39/item_3892/0e88d6702744a7de7bc832c9c1adfe7f.jpg', 'Realme note 6 Vitality Edition', '18000 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar6.html">
+                <img src="https://www.gadget.kg/upload/catalog/36/item_3577/6febc93da3cc61f6025880d6211dd58e.jpg"
+                    alt="Товар 3"></a>
+            <h3>Redme 9a</h3>
+            <div class="details">
+                <span class="price">12000 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('https://www.gadget.kg/upload/catalog/36/item_3577/6febc93da3cc61f6025880d6211dd58e.jpg', 'Readme 9a', '1200 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar7.html">
+                <img src="https://www.gadget.kg/upload/catalog/72/item_7193/2686e15665297f61d5326a48ba969018.jpg"
+                    alt="Товар 3"></a>
+            <h3>Realme Oneplus </h3>
+            <div class="details">
+                <span class="price">36000 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('https://www.gadget.kg/upload/catalog/72/item_7193/2686e15665297f61d5326a48ba969018.jpg', 'Realme  Oneplus', '36000 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar8.html">
+                <img src="https://www.gadget.kg/upload/catalog/72/item_7130/0df8bcd3ae9a0cdbf5bad84cb41a7d1b.jpg"
+                    alt="Товар 3"></a>
+            <h3>Планшет Realme x 6 Lite</h3>
+            <div class="details">
+                <span class="price">32000 сом</span>
+                <button class="cart-btn" onclick="addToCart('', 'Планшет Realme x 6 Lite', '32000 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+
+
+
+    </div>
+    <!-- Страница корзины -->
+    <div id="cart-page" class="cart-page" style="display: none;">
+        <h2>Корзина товаров 🛒:<div class="read" id="total">: сом </div>
+        </h2>
+
+
+
+        <div id="cart-items"></div>
+
+
+        <div id="total-block" class="total-block">
+            <div class="total-header">
+                <span class="total-title">подтвердите доставку товара(ов)</span>
+                <span class="close-btn" onclick="closeTotalBlock()">×</span>
+            </div>
+            <div id="total"> </div>
+            <p>убедитесь что итоговая сумма соответствует с суммой товаров в корзине</p>
+            <div class="boton" id="pay-button">
+                <a href="./page/registration.html" onclick="showTotalBloc(); return false;">подтвердить оформление доставки</a>
+            </div>
+        </div>
+
+
+        <!-- Кнопка для отображения итогов -->
+        <div class="shopping-cart-btn" onclick="showTotalBlock()">
+            <i class="fas fa-shopping-cart"></i> Офорить доставку
+        </div>
+    </div>
+
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

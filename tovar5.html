@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Беспроводные наушники</title>
+    <style>
+        /* Сброс стилей */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Основные стили */
+        body {
+            display: flex;
+            justify-content: center;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            display: flex;
+            width: 80%;
+            margin: 20px 0;
+        }
+
+        /* Основной контент */
+        .product {
+            display: flex;
+            width: 100%;
+        }
+
+        .product-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            border-radius: 10%;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.582);
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product-info {
+            flex: 2;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .rating {
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .price {
+            color: red;
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        .btn {
+            background-color: #ff004c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 10px 0;
+        }
+
+        .btn:hover {
+            background-color: #cc0039;
+        }
+
+        .contact h2,
+        .address h2 {
+            font-size: 1em;
+            margin-top: 15px;
+            color: #333;
+        }
+
+        .contact p a {
+            color: #ff004c;
+            text-decoration: none;
+        }
+
+        .contact p a:hover {
+            text-decoration: underline;
+        }
+
+        .address p {
+            margin: 5px 0;
+        }
+
+        /* Кнопка со стрелкой */
+        .back-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ff004c;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            text-decoration: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+        }
+
+        .back-button:hover {
+            background-color: #b9043a;
+        }
+
+        .back-button:after {
+            content: '←';
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Контейнер страницы -->
+    <div class="container">
+        <!-- Основной контент -->
+        <div class="product">
+            <!-- Изображение товара -->
+            <div class="product-image-container">
+                <img src="\img\5.jpg" alt="Наушники" class="product-image">
+            </div>
+
+            <!-- Информация о товаре -->
+            <div class="product-info">
+                <h1>Беспроводные наушники в стиле <br> CyberPunk QYS V12 Anc</h1>
+                <p class="rating">★★★★★ <span>0 отзывов</span></p>
+                <p class="price">1 800 сом</p>
+                <button class="btn">🛒 В корзину</button>
+
+                <div class="contact">
+                    <h2>Уточняйте наличие по телефону:</h2>
+                    <p><a href="tel:+996700916121">+996 700 916 121</a></p>
+                    <p><a href="tel:+996551916122">+996 551 916 122</a></p>
+                    <p><a href="tel:+996772704012">+996 772 704 012</a></p>
+                </div>
+
+                <div class="address">
+                    <h2>Адрес:</h2>
+                    <p>Панфилова 90 (пересекает Кулатова)</p>
+                    <p>Пн-Пт: 10:00 до 19:00</p>
+                    <p>Сб: 10:00 до 17:00</p>
+                    <p>Вс: 10:00 до 17:00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Кнопка возвращения на другой сайт -->
+    <a href="../index.html" class="back-button"></a>
+</body>
+
+</html>

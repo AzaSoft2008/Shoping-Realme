@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты</title>
+    <style>
+        /* Общие стили */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Шапка страницы */
+        
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            
+        }
+
+        .menu a {
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .menu .active {
+            font-weight: bold;
+        }
+
+        /* Контейнер контактов */
+        .contacts-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            margin-top: 190px;
+            /* Добавляем отступ сверху, равный высоте панели */
+            padding: 30px;
+            padding: 20px;
+            background-color: #c2c1c194;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-item {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .contact-item h2,
+        .contact-item h3 {
+            margin-top: 0;
+            color: #2b2d52;
+        }
+
+        .contact-item p,
+        .contact-item li {
+            margin: 5px 0;
+        }
+
+        /* Социальные иконки */
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .social-icons img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .navbar {
+
+            position: fixed;
+            /* Фиксирует навигацию в верхней части экрана */
+            top: 0;
+            left: 0;
+            width: 100%;
+            /* Чтобы занимала всю ширину экрана */
+            z-index: 1000;
+            /* Устанавливает высокий приоритет, чтобы перекрыть другие элементы */
+
+
+            background-color: #444;
+            height: 100px;
+            color: white;
+            padding: 10px 70px;
+            display: flex;
+            justify-content: space-between;
+            text-decoration: none;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            cursor: pointer;
+            font-size: 25px;
+        }
+        .menu-button {
+            font-size: 25px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+        }
+        .hover-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .hover-text:hover {
+            transform: translateY(-5px);
+            color: #007BFF;
+        }
+
+        .hover-texton {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .hover-texton:hover {
+            transform: translateY(-5px);
+            color: #33ff00;
+        }
+        .hover-textcon {
+            font-size: 24px;
+            font-weight: bold;
+            color:#007BFF;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .hover-textcon:hover {
+            transform: translateY(-5px);
+            color: #0877ee;
+        }
+        .centering{
+            display: flex;
+            justify-content: center; /* Центрирование по горизонтали */
+            align-items: center;    /* Центрирование по вертикали */
+            height: 100%
+        }body {
+            background-image: url(https://png.pngtree.com/thumb_back/fw800/background/20240103/pngtree-seamless-vector-background-white-voluminous-texture-image_13926123.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка страницы -->
+
+    <div class="navbar">
+        <button class="menu-button" onclick="openNav()">
+            <img src="\img\logo2.jpg" alt="Realme Logo" class="logo-img">
+        </button>
+        <div class="centering">
+            <a class="hover-texton" href="../index.html" onclick="openMainPage()">Магазин</a>
+            <a class="hover-text" href="../cotolog.html">Главная</a>
+            <a class="hover-textcon" href="#">Контакты</a>
+        </div>
+        <button class="cart-button" onclick="openCartPage()">
+            <i class="fa fa-shopping-cart"></i>
+            <span id="cart-count"></span>
+        </button>
+    </div>
+    <!-- Блок контактов -->
+    <main class="contacts-container">
+        <section class="contacts">
+            <div class="contact-item">
+                <h2>Контакты</h2>
+                <p><strong>📍 Адрес:</strong> Панфилова 90 (пересекает Кулатова)</p>
+                <p><strong>📧 Email:</strong> <a href="mailto:gadget.kg@mail.ru">gadget.kg@mail.ru</a></p>
+                <p><strong>🕑 Время работы:</strong></p>
+                <ul>
+                    <li>Пн-Пт: 10:00 до 19:00</li>
+                    <li>Суббота: 10:00 до 17:00</li>
+                    <li>Воскресенье: 10:00 до 17:00</li>
+                </ul>
+                <p><strong>📞 Телефоны:</strong></p>
+                <ul>
+                    <li>+996 700 916 121</li>
+                    <li>+996 551 916 122</li>
+                </ul>
+            </div>
+
+            <div class="contact-item">
+                <h3>ТЦ Бета Сторес 2, 2-Этаж</h3>
+                <p><strong>📧 Email:</strong> <a href="mailto:gadget.kg@mail.ru">gadget.kg@mail.ru</a></p>
+                <p><strong>🕑 Время работы:</strong> 10:00 до 20:00 (без выходных)</p>
+                <p><strong>📞 Телефон:</strong> +996 772 704 012</p>
+            </div>
+
+            <!-- Социальные сети -->
+            <div class="social-icons">
+                <a href="#"><img src="vk-icon.png" alt="VK"></a>
+                <a href="#"><img src="fb-icon.png" alt="Facebook"></a>
+                <a href="#"><img src="whatsapp-icon.png" alt="WhatsApp"></a>
+                <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

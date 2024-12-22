@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    /* Верхняя навигация */
+    .navbar {
+
+        position: fixed;
+        /* Фиксирует навигацию в верхней части экрана */
+        top: 0;
+        left: 0;
+        width: 100%;
+        /* Чтобы занимала всю ширину экрана */
+        z-index: 1000;
+        /* Устанавливает высокий приоритет, чтобы перекрыть другие элементы */
+
+
+        background-color: #444;
+        height: 100px;
+        color: white;
+        padding: 10px 70px;
+        display: flex;
+        justify-content: space-between;
+        text-decoration: none;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+        cursor: pointer;
+        font-size: 25px;
+    }
+
+    .cart-button {
+        background-color: #6a0dad00;
+        color: white;
+        border: 3px solid #adababbd;
+        border-radius: 5px;
+        padding: 30px 25px;
+        cursor: pointer;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .cart-button:hover {
+        background-color: #590cac00;
+        box-shadow: 0 8px 16px rgb(245, 245, 245);
+    }
+
+    .menu-button {
+        font-size: 25px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: white;
+    }
+
+    /* Боковая навигация */
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 100px;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 1.5s;
+        padding-top: 60px;
+    }
+
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    /* Контейнер товаров */
+    .products {
+        display: grid;
+        grid-template: repeat(1, 1fr) / repeat(3, 1fr);
+        gap: 20px;
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color: white;
+    }
+
+    .product {
+        margin-top: 100px;
+        /* Добавляем отступ сверху, равный высоте панели */
+        padding: 30px;
+        /* Внутренние отступы для основного контента */
+        border: 1px solid #ffffff;
+        border-radius: 10px;
+        overflow: hidden;
+        text-align: center;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.178);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.712);
+
+    }
+
+    .product img {
+        max-width: 100%;
+        height: auto;
+        border-bottom: 1px solid #ffffff;
+    }
+
+    .product h3 {
+        font-size: 18px;
+        margin: 10px 0;
+    }
+
+    .product .details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .product .price {
+        color: #6a0dad;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .product .cart-btn {
+        background-color: #6a0dad00;
+        color: rgb(0, 0, 0);
+        border: 3px solid #777777;
+        border-radius: 5px;
+        padding: 15px 70px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .product .cart-btn:hover {
+        background-color: #7c01ff00;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.712);
+    }
+
+    /* Корзина */
+    .cart-page {
+        padding: 20px;
+        background-color: #ffffff3b;
+        justify-content: center;
+        text-align: center;
+    }
+
+    #cart-items {
+        display: grid;
+        grid-template: repeat(1, 1fr) / repeat(4, 4fr);
+        gap: 20px;
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color: rgba(255, 255, 255, 0.644);
+    }
+
+    h2 {
+
+        font-size: 35px;
+        font-family: monospace;
+        width: 1000px;
+        background-color: #444;
+        color: white;
+        border-radius: 5px;
+    }
+
+    .cart-item {
+        width: 100%;
+        /* товары будут занимать всю ширину их контейнера */
+        max-width: 250px;
+        /* максимальная ширина товара */
+        box-sizing: border-box;
+        /* учитываем padding и border в ширину */
+    }
+
+
+
+    .cart-item img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    /* Медиа-запросы */
+    @media (max-width: 951px) {
+        .products {
+            grid-template: repeat(1, 1fr) / repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .products {
+            grid-template: repeat(1, 1fr) / repeat(1, 1fr);
+        }
+    }
+
+    .hover-text {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .hover-text:hover {
+        transform: translateY(-5px);
+        color: #007BFF;
+    }
+
+    .hover-texton {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .hover-texton:hover {
+        transform: translateY(-5px);
+        color: #33ff00;
+    }
+
+    .menu-button {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .logo-img {
+        max-width: 300px;
+        /* Размер логотипа */
+        height: auto;
+    }
+
+    .shopping-cart-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #8a2be2;
+        /* Фиолетовый цвет */
+        color: white;
+        padding: 30px 150px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .shopping-cart-btn:hover {
+        background-color: #7327a7;
+        /* Кнопка сжимается */
+        /* Тёмно-фиолетовый при наведении */
+        box-shadow: 0 5px #666;
+
+    }
+
+    .shopping-cart-btn i {
+        margin-right: 8px;
+        /* Отступ для иконки */
+    }
+
+    .product .cart-btn:active {
+        transform: scale(0.95);
+        /* Уменьшаем кнопку при нажатии */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        /* Добавляем эффект тени */
+    }
+
+
+    .product .boton:active {
+        transform: scale(0.95);
+        /* Уменьшаем кнопку при нажатии */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        /* Добавляем эффект тени */
+    }
+
+
+
+    .total-block {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #3b3b3b;
+        padding: 100px;
+        border-radius: 10px;
+        border: 3px solid black;
+        box-shadow: 0 7px 200px #7327a7;
+        z-index: 999;
+        width: 600px;
+        display: none;
+    }
+
+    .total-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #424242;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .total-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .close-btn {
+        font-size: 54px;
+        cursor: pointer;
+        color: #aaa;
+        transition: color 0.3s;
+    }
+
+    .close-btn:hover {
+        color: #f00;
+    }
+
+    #total {
+        font-size: 18px;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: #444;
+    }
+
+    .cart-item {
+        position: relative;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 15px;
+        text-align: center;
+        width: 200px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .remove-item {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        font-size: 40px;
+        color: #000000;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    .remove-item:hover {
+        color: #ff0000;
+    }
+
+    #cart-page {
+        margin-top: 80px;
+        /* Отступ для того, чтобы содержимое не перекрывалось верхним меню */
+    }
+
+
+    /*sssssssssssssssssssssssssssssssssssssssssssssssss*/
+
+    /* Стили для мобильных устройств (ширина экрана до 768px) */
+    @media screen and (max-width: 768px) {
+        body {
+            font-size: 14px;
+            /* Уменьшаем размер шрифта для мобильных устройств */
+        }
+
+        .navbar {
+            flex-direction: column;
+            /* Переводим элементы навигации в вертикальный список */
+        }
+
+        #product-list {
+            grid-template-columns: 1fr;
+            /* Один столбец для списка продуктов */
+        }
+
+        .cart {
+            width: 100%;
+            /* Делает корзину на весь экран */
+        }
+    }
+
+    /* Для планшетов и более крупных экранов (ширина экрана от 768px до 1024px) */
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+        #product-list {
+            grid-template-columns: repeat(2, 1fr);
+            /* Два столбца для списка продуктов */
+        }
+
+        .navbar {
+            justify-content: space-between;
+            /* Убираем блокировку элементов в навбаре */
+        }
+    }
+
+    /* Для больших экранов (ширина экрана от 1024px и выше) */
+    @media screen and (min-width: 1024px) {
+        #product-list {
+            grid-template-columns: repeat(4, 1fr);
+            /* Четыре столбца для списка продуктов */
+        }
+
+        .cart {
+            width: 300px;
+            /* Устанавливаем фиксированную ширину для корзины */
+        }
+
+
+    }
+
+    /* На мобильных устройствах скрываем навигацию по категории */
+    @media screen and (max-width: 768px) {
+        .category-navigation {
+            display: none;
+        }
+    }
+
+    /* Уменьшаем размер изображений на малых экранах */
+    @media screen and (max-width: 768px) {
+        .product-image {
+            width: 100%;
+            /* Сделаем изображение адаптивным */
+            height: auto;
+        }
+    }
+
+    /* Скрываем кнопку "Показать все" на мобильных устройствах */
+    @media screen and (max-width: 768px) {
+        .show-all-button {
+            display: none;
+        }
+    }
+
+    /* Показываем кнопку "Показать все" на больших экранах */
+    @media screen and (min-width: 1024px) {
+        .show-all-button {
+            display: block;
+        }
+    }
+
+    body {
+        background-image: url(https://png.pngtree.com/thumb_back/fw800/background/20240103/pngtree-seamless-vector-background-white-voluminous-texture-image_13926123.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .total-block {
+        display: none;
+        /* Сначала блок скрыт */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* Центрирование */
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        /* Блок будет поверх других элементов */
+    }
+
+
+    .boton {
+        cursor: pointer;
+        margin-top: 70px;
+        padding: 17px 27px;
+        background-color: #7327a7;
+        border-radius: 5px;
+        text-align: center;
+        color: white;
+        transition: color 1.5s;
+
+    }
+
+    .boton:hover {
+        background-color: #218608;
+        transform: translateY(-5px);
+    }
+
+
+    .close-btn {
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    .button.disabled {
+        background-color: gray;
+        /* Серая кнопка */
+        cursor: not-allowed;
+        /* Отключаем возможность клика */
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gadgets</title>
+
+</head>
+
+<body>
+
+    <!-- Боковая навигация -->
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#" class="hover-text">Новинки</a>
+        <a href="#" class="hover-text">Авто</a>
+        <a href="#" class="hover-text">спорт</a>
+        <a href="#" class="hover-text">Гаджеты</a>
+        <a href="#" class="hover-text">телефоны </a>
+        <a href="#" class="hover-text">техника </a>
+        <a href="#" class="hover-text">игры</a>
+        <a href="#" class="hover-text">другое..</a>
+    </div>
+
+    <!-- Верхняя навигация -->
+    <div class="navbar">
+        <button class="menu-button" onclick="openNav()">
+            <img src="\img\logo2.jpg" alt="Realme Logo" class="logo-img">
+        </button>
+        <div>
+            <a class="hover-texton" href="./telefhone.html">Магазин</a>
+            <a class="hover-text" href="../cotolog.html">Главная</a>
+            <a class="hover-text" href="./contacts.html">Контакты</a>
+        </div>
+        <button class="cart-button" onclick="openCartPage()">
+            <i class="fa fa-shopping-cart"></i>
+            КОРЗИНА ТОВАРОВ 🛒 (<span id="cart-count">0</span>)
+        </button>
+    </div>
+
+    <!-- Блок товаров -->
+    <div class="products" id="product-list">
+        <div class="product">
+            <a href="./page/tovar1.html">
+                <img src="https://www.gadget.kg/upload/catalog/74/item_7346/de3146d8ecf9966a262f1d4f7c082f6c.jpg"
+                    alt="Товар 1"></a>
+            <h3>Планшет в стиле CyberPunk QYS V12 </h3>
+            <div class="details">
+                <span class="price">18000 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('https://www.gadget.kg/upload/catalog/74/item_7346/de3146d8ecf9966a262f1d4f7c082f6c.jpg', 'Планшет в стиле CyberPunk QYS V12 ', '18000 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar2.html">
+                <img src="https://www.gadget.kg/upload/catalog/63/item_6285/7794428f9267f2a62fcfeaf036a8de22.jpg"
+                    alt="Товар 2"></a>
+            <h3>Планшет Realme Buds T110</h3>
+            <div class="details">
+                <span class="price">32000 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('https://www.gadget.kg/upload/catalog/63/item_6285/7794428f9267f2a62fcfeaf036a8de22.jpg', 'Планшет Realme Buds T110', '32000 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar3.html">
+                <img src="https://www.gadget.kg/upload/catalog/47/item_4672/d5912b3ae267f3012a7e65a6ce5d2896.jpg"
+                    alt="Товар 3"></a>
+            <h3> Poco x5</h3>
+            <div class="details">
+                <span class="price">26000 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('https://www.gadget.kg/upload/catalog/47/item_4672/d5912b3ae267f3012a7e65a6ce5d2896.jpg', 'Poco x5', '26000 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar4.html">
+                <img src="https://www.gadget.kg/upload/catalog/40/item_3954/40e98149279eb9b650a04c9b9be3d755.jpg"
+                    alt="Товар 3"></a>
+            <h3>Poco x 6 </h3>
+            <div class="details">
+                <span class="price">32000 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('https://www.gadget.kg/upload/catalog/40/item_3954/40e98149279eb9b650a04c9b9be3d755.jpg', 'Poco x 6', '32000 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar5.html">
+                <img src="https://www.gadget.kg/upload/catalog/39/item_3892/0e88d6702744a7de7bc832c9c1adfe7f.jpg"
+                    alt="Товар 3"></a>
+            <h3>Realme note 6 Vitality Edition</h3>
+            <div class="details">
+                <span class="price">18000 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('https://www.gadget.kg/upload/catalog/39/item_3892/0e88d6702744a7de7bc832c9c1adfe7f.jpg', 'Realme note 6 Vitality Edition', '18000 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar6.html">
+                <img src="https://www.gadget.kg/upload/catalog/36/item_3577/6febc93da3cc61f6025880d6211dd58e.jpg"
+                    alt="Товар 3"></a>
+            <h3>Redme 9a</h3>
+            <div class="details">
+                <span class="price">12000 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('https://www.gadget.kg/upload/catalog/36/item_3577/6febc93da3cc61f6025880d6211dd58e.jpg', 'Readme 9a', '1200 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar7.html">
+                <img src="https://www.gadget.kg/upload/catalog/72/item_7193/2686e15665297f61d5326a48ba969018.jpg"
+                    alt="Товар 3"></a>
+            <h3>Realme Oneplus </h3>
+            <div class="details">
+                <span class="price">36000 сом</span>
+                <button class="cart-btn"
+                    onclick="addToCart('https://www.gadget.kg/upload/catalog/72/item_7193/2686e15665297f61d5326a48ba969018.jpg', 'Realme  Oneplus', '36000 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+        <div class="product">
+            <a href="./page/tovar8.html">
+                <img src="https://www.gadget.kg/upload/catalog/72/item_7130/0df8bcd3ae9a0cdbf5bad84cb41a7d1b.jpg"
+                    alt="Товар 3"></a>
+            <h3>Планшет Realme x 6 Lite</h3>
+            <div class="details">
+                <span class="price">32000 сом</span>
+                <button class="cart-btn" onclick="addToCart('', 'Планшет Realme x 6 Lite', '32000 сом')">
+                    <i class="fa fa-shopping-cart"></i> В корзину
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Страница корзины -->
+    <div id="cart-page" class="cart-page" style="display: none;">
+        <h2>Корзина товаров 🛒:<div class="read" id="total">: сом </div>
+        </h2>
+
+
+
+        <div id="cart-items"></div>
+
+
+        <div id="total-block" class="total-block">
+            <div class="total-header">
+                <span class="total-title">подтвердите доставку товара(ов)</span>
+                <span class="close-btn" onclick="closeTotalBlock()">×</span>
+            </div>
+            <div id="total"> </div>
+            <p>убедитесь что итоговая сумма соответствует с суммой товаров в корзине</p>
+            <div class="boton" onclick="showTotalBloc()" id="pay-button">подтвердить оформление доставки</div>
+        </div>
+
+
+        <!-- Кнопка для отображения итогов -->
+        <div class="shopping-cart-btn" onclick="showTotalBlock()">
+            <i class="fas fa-shopping-cart"></i> Офорить доставку
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        // Добавление товара в корзину
+        function addToCart(image, name, price) {
+            cart.push({ image, name, price });
+            updateCartCount(); // Обновляем количество товаров в корзине
+            calculateCartSum(); // Пересчитываем итоговую сумму
+        }
+
+        // Обновление счетчика товаров в корзине
+        function updateCartCount() {
+            document.getElementById('cart-count').innerText = cart.length;
+        }
+
+        // Открытие страницы корзины
+        function openCartPage() {
+            const productList = document.getElementById('product-list');
+            const cartPage = document.getElementById('cart-page');
+            const cartItems = document.getElementById('cart-items');
+
+            productList.style.display = 'none';
+            cartPage.style.display = 'block';
+            cartItems.innerHTML = '';
+
+            cart.forEach((item, index) => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+    <img src="${item.image}" alt="${item.name}">
+        <h3>${item.name}</h3>
+        <p>${item.price}</p>
+        <span class="remove-item" onclick="removeFromCart(${index})">&times;</span>
+        `;
+                cartItems.appendChild(cartItem);
+            });
+        }
+
+        // Удаление товара из корзины
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartCount(); // Обновляем количество товаров в корзине
+            openCartPage(); // Обновляем отображение корзины
+            calculateCartSum(); // Пересчитываем итоговую сумму после удаления товара
+        }
+
+        // Переход на главную страницу
+        function openMainPage() {
+            const productList = document.getElementById('product-list');
+            const cartPage = document.getElementById('cart-page');
+
+            productList.style.display = 'grid';
+            cartPage.style.display = 'none';
+        }
+
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        // Закрытие бокового меню
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+
+        // Функция для расчета суммы товаров в корзине
+        function calculateCartSum() {
+            let sum = 0;
+
+            // Суммируем значения цен из массива cart
+            cart.forEach(item => {
+                // Убираем текстовую часть цены и преобразуем в число
+                const numericValue = parseFloat(item.price.replace(/[^\d.]/g, ''));
+                sum += numericValue || 0; // Добавляем к общей сумме
+            });
+
+            const totalElement = document.getElementById('total');
+            if (totalElement) {
+                totalElement.textContent = `Итог: ${sum.toFixed(2)} сом`; // Выводим итог с округлением до 2 знаков
+            }
+        }
+
+        // Функция для показа итогового блока
+        function showTotalBlock() {
+            const totalBlock = document.getElementById('total-block');
+            totalBlock.style.display = 'block'; // Показываем итоговый блок
+            calculateCartSum(); // Пересчитываем итоговую сумму
+        }
+
+        // Закрытие итогового блока
+        function closeTotalBlock() {
+            const totalBlock = document.getElementById('total-block');
+            totalBlock.style.display = 'none'; // Скрываем итоговый блок
+        }
+        function showTotalBlock() {
+            const totalAmount = parseFloat(document.getElementById('total').textContent.replace(' сом', ''));
+
+            if (totalAmount === 0) {
+                document.getElementById('pay-button').classList.add('disabled'); // Сделать кнопку серой
+            } else {
+                document.getElementById('pay-button').classList.remove('disabled'); // Включить кнопку
+            }
+
+            document.getElementById('total-block').style.display = 'block'; // Показываем блок
+        }
+
+        function closeTotalBlock() {
+            document.getElementById('total-block').style.display = 'none'; // Скрываем блок
+        }
+
+    </script>
+</body>
+
+</html>
